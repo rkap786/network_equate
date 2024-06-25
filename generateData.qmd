@@ -1,6 +1,6 @@
 ---
 title: "network data generation"
-format: html
+format: gfm
 editor: visual
 ---
 
@@ -62,11 +62,11 @@ Linkage structure can be specified more explicitly (next section)
 
 
 
-T = 3
+numTests = 3
 nt = c(50, 100, 100)
 np= c(1000, 1000, 1000)
 avg_diff = c(1, 0, -1) # Easy, Medium, Hard
-Sigma= diag(T)
+Sigma= diag(numTests)
 #Sigma[outer(1:T, 1:T, function(i,j) i!=j)] <- 0.5
 x = gendata(T, nt=nt, np=np, avg_diff, 
                diff_dist="iid", ability_type= "normal")
@@ -86,7 +86,7 @@ data.frame(sum_scores) |>
 
 
 ## Common students for overlap
-sum_scores |> select(totalScore1, totalScore2) |> drop_na() |> nrow()
+sum_scores |> dplyr::select(totalScore1, totalScore2) |> drop_na() |> nrow()
 
 
 
