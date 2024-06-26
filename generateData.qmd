@@ -1,6 +1,6 @@
 ---
 title: "network data generation"
-format: gfm
+format: html
 editor: visual
 ---
 
@@ -8,7 +8,7 @@ editor: visual
 
 ```{r}
 
-setwd("/Users/radhika/Library/CloudStorage/GoogleDrive-rkap786@stanford.edu/My Drive/0. Projects - Stanford/Network equating/Code")
+setwd("/Users/radhika/Library/CloudStorage/GoogleDrive-rkap786@stanford.edu/My Drive/0. Projects - Stanford/Network equating/Code/network_equate")
 source("genData.R")
 source("genLinkage.R")
 library(dplyr)
@@ -86,7 +86,7 @@ data.frame(sum_scores) |>
 
 
 ## Common students for overlap
-sum_scores |> dplyr::select(totalScore1, totalScore2) |> drop_na() |> nrow()
+#sum_scores |> dplyr::select(totalScore1, totalScore2) |> drop_na() |> nrow()
 
 
 
@@ -122,7 +122,8 @@ data.frame(sum_scores) |>
   geom_density(alpha = 0.1)
 
 ## Common students for overlap
-sum_scores |> select(totalScore1, totalScore2) |> drop_na() |> nrow()
+#sum_scores |> dplyr::select(totalScore1, totalScore2) |> drop_na() |> nrow()
+
 ```
 
 # Linkage structure
