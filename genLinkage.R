@@ -1,3 +1,53 @@
+add_missing_3nodes= function(sum_scores, data) {
+  id_selected=c()
+  data=sum_scores
+  data_missing= data
+  Nr= nrow(data_missing)
+  Nc= ncol(data_missing)-1
+  list=data_missing$id
+  
+  ### Only in nodes 
+  for (i in 1:Nc) {
+    ## Individual nodes
+    m0= sample(list, noverlap[i,i], replace = F)
+    data_missing[m0,-c(1,(i+1))]= NA
+  }
+  
+  
+  ### First node with node 2 
+  overlap.count=noverlap[1,2] 
+  m.new= data_missing[,-4] # total score 2 and ID
+  m.new= m.new |> 
+    filter(!is.na(totalScore1) & !is.na(totalScore2)) |>
+    pull(id)
+  m12_overlap= sample(m.new, overlap.count, replace=F)
+  data_missing[m12_overlap, 4]= NA
+  
+  ### First node with node3
+  overlap.count=noverlap[1,3] 
+  m.new= data_missing[,-3] # total score 3 and ID
+  m.new= m.new |> filter(!is.na(totalScore1) &
+                           !is.na(totalScore3)) |> pull(id)
+  m13_overlap= sample(m.new, overlap.count, replace=F)
+  data_missing[m13_overlap, 3]= NA
+  
+  
+  ### Node 2 & node 3
+  overlap.count=noverlap[2,3] 
+  m.new= data_missing[,-2] # total score 3 and ID
+  m.new= m.new |> filter(!is.na(totalScore2) &
+                           !is.na(totalScore3)) |> pull(id)
+  m23_overlap= sample(m.new, overlap.count, replace=F)
+  data_missing[m23_overlap, 2]= NA
+  return(data_missing)
+  
+}
+
+
+
+
+
+
 addmissing_single_link = function(data, cty_overlap, 
                                   ncountries_test, ntests) {
   #Generates missing data matrix given number of countries that took test 2 & 3
