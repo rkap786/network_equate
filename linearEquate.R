@@ -117,8 +117,11 @@ while (t<12) {
     diff=diff + abs(m[i]-m[i+1])
   }
   #print(diff)
-  if(diff>diff_prev & diff_prev<0.02) break
-  x_prev=x
+  if(diff>diff_prev) {
+    x_prev=x
+    break 
+    }
+  
 }
 names(x_prev)= c("id", oldnames)
 return(list(x_prev, info))

@@ -297,11 +297,12 @@ id=data_3nodes[,1]
 x_equated= lineq(x,id)
 
 ## New scores
+colMeans(data_3nodes[,-1], na.rm = T)
 colMeans(x_equated[[1]][,-1], na.rm = T)
 
 
 info= x_equated[[2]]
-plot(NULL,xlim=c(0,12),ylim=c(0,35))
+plot(NULL,xlim=c(0,12),ylim=c(0,50))
 for (i in 1:(length(x)-1)) {
   sapply(info,'[[',i)->z
   z<-t(z)
