@@ -125,6 +125,30 @@ while (t<12) {
 names(x_prev)= c("id", oldnames)
 return(list(x_prev, info))
 }
+
+link.boot.se = function(x, rep=100) {
+  mean_eq_scores=data.frame()
+  for (i in 1:rep) {
+    x_sample=x[sample(nrow(x), size=nrow(x), replace = TRUE), ]
+    x_sample_equated= lineq(x_sample,id=1:nrow(x))
+    colMeans(x_sample_equated[[1]][,-1], na.rm = T)
+    mean_eq_scores= bind_rows(mean_eq_scores, colMeans(x_sample, na.rm = T))
+    
+  }
+  
+  mean.boot= apply(mean_eq_scores, 2, mean, na.rm=T)
+  boot.sd=apply(mean_eq_scores, 2, sd, na.rm=T)
+  # boot.sd=c()
+  # for (i in 1:ncol(mean_eq_scores)) {
+  #   boot.sd =  c(boot.sd, 
+  #                sqrt(sum((mean_eq_scores[,i] - mean.boot[i])^2)/(nrow(mean_eq_scores)-1)))
+  #   
+  # }
+  
+  return(boot.sd)
+}
+
+
 # 
 # rbind(unlist(lapply(x[,-1],FUN=mean, na.rm=T)))
 # rbind(unlist(lapply(x[,-1],FUN=sd, na.rm=T)))

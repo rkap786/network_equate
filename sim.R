@@ -56,8 +56,13 @@ sd= c(sd(s1), sd(s2), sd(s3))  # sd varies between  1 & 3
 # mean(linlink_21[1] + linlink_21[2]*s1) = mean(s2)
 # Mean s1 = 0.95, mean s2= 1.92
 
+
+
 x<- list(s1,s2, s3) # node positions are mean test scores and sd
-v<-cbind(rep(0,500),rep(0,500),rep(0,500)) # this will change when there is force, based on difference in means
+original= list(rnorm(100,2,1), rnorm(100), rnorm(100, -3,1))
+x=original
+
+v<-cbind(rep(0,100),rep(0,100),rep(0,100)) # this will change when there is force, based on difference in means
 e<-matrix(rep(1,9),3,3) # connections between nodes, all nodes are connected here
 # k_a<-matrix(c(1,linlink_12[1],linlink_21[1],1), 2,2)
 # k_b<-matrix(c(1,linlink_12[2],linlink_21[2],1),2,2)
@@ -139,6 +144,8 @@ for (i in 1:(length(x)-1)) {
   z<-t(z)
   lines(z[,1],z[,2],type='l')
 }
+
+plot(original[[1]],x_prev[[1]])
 
 
 
