@@ -313,9 +313,14 @@ boot.se= link.boot.se(x)
 boot.se
 #### Error of equating -  bootstrap
 # 0.2928948   0.6179196   0.5526686
-cor(x_equated[[1]]$totalScore1, true.ability$th)
-cor(x_equated[[1]]$totalScore2, true.ability$th)
-cor(x_equated[[1]]$totalScore3, true.ability$th)
+c(true.cor= cor(sum_scores$totalScore1, true.ability$th), 
+  recovered.cor= cor(x_equated[[1]]$totalScore1, true.ability$th))
+
+c(true.cor= cor(sum_scores$totalScore2, true.ability$th), 
+  recovered.cor= cor(x_equated[[1]]$totalScore2, true.ability$th))
+
+c(true.cor= cor(sum_scores$totalScore3, true.ability$th), 
+  recovered.cor= cor(x_equated[[1]]$totalScore3, true.ability$th))
 
 ## New scores
 colMeans(data_3nodes[,-1], na.rm = T)
