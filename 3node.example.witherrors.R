@@ -34,12 +34,15 @@ boot.se
 
 c(true.cor= cor(sum_scores$totalScore1, true.ability$th), 
   recovered.cor= cor(x_equated[[1]]$totalScore1, true.ability$th))
+######## 0.93 0.93
 
 c(true.cor= cor(sum_scores$totalScore2, true.ability$th), 
   recovered.cor= cor(x_equated[[1]]$totalScore2, true.ability$th))
+######## 0.9717226     0.9717226
 
 c(true.cor= cor(sum_scores$totalScore3, true.ability$th), 
   recovered.cor= cor(x_equated[[1]]$totalScore3, true.ability$th))
+######## 0.9569337     0.9569337
 
 ## New scores
 colMeans(sum_scores[,-1], na.rm = T)
